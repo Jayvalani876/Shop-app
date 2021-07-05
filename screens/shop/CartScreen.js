@@ -20,7 +20,7 @@ const CartScreen = props => {
             })
         }
         return transformedCartItems;
-        return;
+        // return;
     });
     return (
         <View style={styles.screen}>
