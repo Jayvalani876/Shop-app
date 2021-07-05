@@ -1,40 +1,36 @@
 import React from "react";
 import { createStackNavigator } from '@react-navigation/stack';
-import { HeaderButtons, Item } from "react-navigation-header-buttons"
+import { AntDesign } from '@expo/vector-icons';
 
 
 import ProductsOverviewScreen from "../screens/shop/ProductsOverviewScreen";
 import ProductDetailScreen from "../screens/shop/ProductDetailScreen";
 import CartScreen from "../screens/shop/CartScreen";
 import Colors from "../constants/Colors";
-import HeaderButton from "../components/UI/HeaderButton"
+import { TouchableOpacity, Button } from "react-native";
 
 const Stack = createStackNavigator();
 
-
-export const ShopNavigator = ({ navigation }) => {
+export const ShopNavigator = () => {
     return (
         <Stack.Navigator initialRouteName="productOverview">
             <Stack.Screen
                 name="productOverview"
                 component={ProductsOverviewScreen}
-                options={{
+                options={({ navigation }) => ({
                     headerStyle: {
                         backgroundColor: Colors.primary
                     },
                     headerTintColor: "white",
                     headerTitle: "All Products",
                     headerTitleAlign: "center",
+
                     headerRight: () => (
-                        <HeaderButtons HeaderButtonComponent={HeaderButton}>
-                            <Item
-                                title="Cart"
-                                iconName="md-cart"
-                                onPress={() => 'cartScreen'}
-                            />
-                        </HeaderButtons>
+                        <TouchableOpacity onPress={() => navigation.navigate('cart')}>
+                            <AntDesign name="shoppingcart" style={{ marginRight: 15 }} size={24} color="#FFFFFF" />
+                        </TouchableOpacity>
                     )
-                }}
+                })}
             />
             <Stack.Screen
                 name="productDetail"
@@ -49,7 +45,7 @@ export const ShopNavigator = ({ navigation }) => {
                 }}
             />
             <Stack.Screen
-                name="cartScreen"
+                name="cart"
                 component={CartScreen}
                 options={{
                     headerStyle: {

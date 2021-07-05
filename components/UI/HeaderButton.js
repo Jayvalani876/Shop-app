@@ -8,6 +8,7 @@ const CustomHeaderButton = props => {
 
     return (
         <HeaderButton {...props}
+            onPress={() => props.navigation.navigate('cart')}
             IconComponent={Ionicons}
             iconSize={23}
             color="white"
