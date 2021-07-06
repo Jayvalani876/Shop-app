@@ -1,14 +1,12 @@
-import React from "react";
-import { View, ScrollView, Text, Image, Button, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { View, ScrollView, Text, Image, Button, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 
 import * as cartActions from "../../store/actions/cart";
-
 import Colors from "../../constants/Colors";
 
-
 const ProductDetailScreen = props => {
-
+    const [myText, setMyText] = useState("Add to Cart");
     const productId = props.route.params.productId;
     const selectedProduct = useSelector(
         state => state.products.availableProducts.find(prod => prod.id === productId)
@@ -20,10 +18,21 @@ const ProductDetailScreen = props => {
             <Image source={{ uri: selectedProduct.imageUrl }} style={styles.image} />
             <View style={styles.button}>
                 <Button
-                    title="Add to Cart"
+                    title={myText}
+                    onPress={() => {
+                        if (myText == "Add to Cart") {
+                            setMyText("Go to Cart", dispatch(cartActions.addtocart(selectedProduct)))
+                        }
+                        else if (myText == "Go to Cart") {
+                            props.navigation.navigate('cart')
+                        }
+
+                    }}
+
                     color={Colors.primary}
-                    onPress={() => { dispatch(cartActions.addtocart(selectedProduct)) }}
-                />
+                >
+                    {myText}
+                </Button>
             </View>
             <Text style={styles.price}>${selectedProduct.price.toFixed(2)}</Text>
             <Text style={styles.description}>{selectedProduct.description}</Text>
