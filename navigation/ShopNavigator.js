@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { createStackNavigator } from '@react-navigation/stack';
 import { AntDesign } from '@expo/vector-icons';
 import { Badge, } from "react-native-paper";
@@ -9,7 +9,7 @@ import ProductDetailScreen from "../screens/shop/ProductDetailScreen";
 import CartScreen from "../screens/shop/CartScreen";
 import Colors from "../constants/Colors";
 import { TouchableOpacity, Text } from "react-native";
-import * as cartActions from "../store/actions/cart";
+// import * as cartActions from "../store/actions/cart";
 
 const Stack = createStackNavigator();
 
@@ -32,7 +32,7 @@ export const ShopNavigator = props => {
                         <>
                             <TouchableOpacity onPress={() => navigation.navigate('cart')}>
                                 <Badge style={{ backgroundColor: Colors.primary, marginLeft: 20 }}>
-                                    <Text style={{ color: "white", fontSize: 19, }}>{3}</Text>
+                                    <Text style={{ color: "white", fontSize: 19, }}>{4}</Text>
                                 </Badge>
                                 <AntDesign
                                     name="shoppingcart"

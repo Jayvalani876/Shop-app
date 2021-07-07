@@ -31,7 +31,7 @@ const CartScreen = props => {
     return (
         <View style={styles.screen}>
             <View style={styles.summary}>
-                <Text style={styles.summaryText}>Total: <Text style={styles.amount}>${cartTotalAmount.toFixed(2)}</Text></Text>
+                <Text style={styles.summaryText}>Total:{' '}<Text style={styles.amount}>${cartTotalAmount.toFixed(2)}</Text></Text>
                 <Button
                     title="Order Now"
                     color={Colors.accent}
@@ -52,8 +52,8 @@ const CartScreen = props => {
                     />}
             />
         </View>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     screen: {

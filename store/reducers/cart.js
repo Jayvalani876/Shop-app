@@ -4,9 +4,7 @@ import CartItem from "../../models/cart-item";
 const initialState = {
     items: {},
     totalAmount: 0,
-
 };
-
 
 export default (state = initialState, action) => {
     switch (action.type) {
@@ -21,7 +19,6 @@ export default (state = initialState, action) => {
                 // already have the item in cart
                 updatedOrNewCartItem = new CartItem(
                     state.items[addedProduct.id].quantity,
-                    // alert('item has been added to cart'),
                     prodPrice,
                     prodtitle,
                     state.items[addedProduct.id].sum + prodPrice
@@ -42,7 +39,6 @@ export default (state = initialState, action) => {
         case REMOVE_FROM_CART:
             const selectedCartItem = state.items[action.pid];
             const currentQty = selectedCartItem.quantity;
-            console.log(currentQty);
             let updatedCartItems;
             if (currentQty > 1) {
                 // need to reduce it, not erase it

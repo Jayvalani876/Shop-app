@@ -7,6 +7,7 @@ import Colors from "../../constants/Colors";
 
 const ProductDetailScreen = props => {
     const [myText, setMyText] = useState("Add to Cart");
+    // const [perviousValue, setPreviousValue] = useState(myText);
     const productId = props.route.params.productId;
     const selectedProduct = useSelector(
         state => state.products.availableProducts.find(prod => prod.id === productId)
@@ -26,7 +27,6 @@ const ProductDetailScreen = props => {
                         else if (myText == "Go to Cart") {
                             props.navigation.navigate('cart')
                         }
-
                     }}
 
                     color={Colors.primary}

@@ -1,10 +1,7 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, Button, TouchableOpacity, TouchableNativeFeedback, Platform } from "react-native";
 
-
 import Colors from "../../constants/Colors";
-
-
 
 const ProductItem = props => {
 
@@ -27,7 +24,7 @@ const ProductItem = props => {
                     </View>
                     <View style={styles.actions}>
                         <Button title="View Details" color={Colors.primary} onPress={props.onViewDetail} />
-                        <Button title="to Cart" color={Colors.primary} onPress={props.onAddToCart} />
+                        <Button title="Add To Cart" color={Colors.primary} onPress={props.onAddToCart} />
                     </View>
                 </View>
             </View>
