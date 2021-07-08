@@ -17,6 +17,7 @@ const ProductOverviewScreen = props => {
                 keyExtractor={item => item.id}
                 renderItem={itemData =>
                     <ProductItem
+                        id={itemData.item.id}
                         image={itemData.item.imageUrl}
                         title={itemData.item.title}
                         price={itemData.item.price}
@@ -25,6 +26,7 @@ const ProductOverviewScreen = props => {
                             productTitle: itemData.item.title
                         })}
                         onAddToCart={() => { dispatch(cartActions.addtocart(itemData.item)) }}
+                        onGoToCart={() => props.navigation.navigate('cart')}
                     />}
             />
         </View>

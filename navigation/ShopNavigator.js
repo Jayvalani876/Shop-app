@@ -1,5 +1,5 @@
 import React from "react";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { createStackNavigator } from '@react-navigation/stack';
 import { AntDesign } from '@expo/vector-icons';
 import { Badge, } from "react-native-paper";
@@ -15,6 +15,8 @@ const Stack = createStackNavigator();
 
 
 export const ShopNavigator = props => {
+    const cartItems = useSelector(state => state.cart.items)
+    const cartItemCounts = Object.keys(cartItems).length
     return (
         <Stack.Navigator initialRouteName="productOverview">
             <Stack.Screen
@@ -32,7 +34,7 @@ export const ShopNavigator = props => {
                         <>
                             <TouchableOpacity onPress={() => navigation.navigate('cart')}>
                                 <Badge style={{ backgroundColor: Colors.primary, marginLeft: 20 }}>
-                                    <Text style={{ color: "white", fontSize: 19, }}>{4}</Text>
+                                    <Text style={{ color: "white", fontSize: 19, }}>{cartItemCounts == 0 ? '' : cartItemCounts}</Text>
                                 </Badge>
                                 <AntDesign
                                     name="shoppingcart"

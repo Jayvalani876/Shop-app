@@ -1,9 +1,13 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { View, Text, Image, StyleSheet, Button, TouchableOpacity, TouchableNativeFeedback, Platform } from "react-native";
 
 import Colors from "../../constants/Colors";
 
 const ProductItem = props => {
+    console.log(props)
+    const cartProduct = useSelector(state => state.cart.items[props.id])
+
 
     let TouchableCmp = TouchableOpacity;
 
@@ -24,7 +28,7 @@ const ProductItem = props => {
                     </View>
                     <View style={styles.actions}>
                         <Button title="View Details" color={Colors.primary} onPress={props.onViewDetail} />
-                        <Button title="Add To Cart" color={Colors.primary} onPress={props.onAddToCart} />
+                        <Button title={cartProduct ? "Go To Cart" : "Add To Cart"} color={Colors.primary} onPress={cartProduct ? props.onGoToCart : props.onAddToCart} />
                     </View>
                 </View>
             </View>

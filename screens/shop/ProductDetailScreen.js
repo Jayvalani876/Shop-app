@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, ScrollView, Text, Image, Button, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -6,14 +6,24 @@ import * as cartActions from "../../store/actions/cart";
 import Colors from "../../constants/Colors";
 
 const ProductDetailScreen = props => {
-    const [myText, setMyText] = useState("Add to Cart");
-    // const [perviousValue, setPreviousValue] = useState(myText);
+        // const [perviousValue, setPreviousValue] = useState(myText);
     const productId = props.route.params.productId;
     const selectedProduct = useSelector(
         state => state.products.availableProducts.find(prod => prod.id === productId)
     )
+    const cartProduct = useSelector(state => state.cart.items[productId])
+    const [myText, setMyText] = useState(cartProduct ?  "Go to Cart" : "Add to Cart");
+
     const dispatch = useDispatch();
 
+    const goToCart =  () => {
+         dispatch(cartActions.addtocart(selectedProduct))
+    }
+
+    useEffect(()=>{
+        setMyText(cartProduct ?  "Go to Cart" : "Add to Cart")
+    },[cartProduct])
+    
     return (
         <ScrollView style={{ backgroundColor: "#FFFFFF" }}>
             <Image source={{ uri: selectedProduct.imageUrl }} style={styles.image} />
@@ -22,7 +32,8 @@ const ProductDetailScreen = props => {
                     title={myText}
                     onPress={() => {
                         if (myText == "Add to Cart") {
-                            setMyText("Go to Cart", dispatch(cartActions.addtocart(selectedProduct)))
+                            setMyText("Go to Cart")
+                            goToCart()
                         }
                         else if (myText == "Go to Cart") {
                             props.navigation.navigate('cart')
